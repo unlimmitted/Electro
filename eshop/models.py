@@ -1,3 +1,38 @@
 from django.db import models
+from autoslug import AutoSlugField
+from django.urls import reverse
 
 # Create your models here.
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100, db_index=True)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'cat_id': self.pk})
+
+
+class ProductList(models.Model):
+    title = models.CharField(
+        max_length=255, verbose_name="Название товара", null=True)
+    price = models.CharField(
+        max_length=255, verbose_name="Цена", null=True)
+    description = models.TextField(verbose_name="Описание", null=True)
+    slug = AutoSlugField(populate_from='title')
+    photo = models.ImageField(
+        upload_to="images/%Y/%m/%d", verbose_name="Фото")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('product', kwargs={'slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Товары'
+        verbose_name_plural = 'Товары'
+        ordering = ('-id',)
