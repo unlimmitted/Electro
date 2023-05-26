@@ -1,0 +1,25 @@
+{% extends 'shop/base.html' %}
+
+{{ title }}
+{% block content %}
+
+    <form action="{% url 'category' pk %}">
+        <input name="search" placeholder='Найти в этой категории'>
+        <button type="submit">Найти</button>
+    </form>
+
+    {% if cat_goods %}
+    {% for product in cat_goods %}
+    <form method="post">
+        {% csrf_token %}
+        Название: {{product.title}}
+        Описание: {{ product.description }}
+        {% if product.photo %}
+            <img src="{{ product.photo.url }}" alt="" width='200' height='200'>
+        {% endif %}
+    </form>
+    {% endfor %}
+    {% else %}
+        <h1>Товары не найдены</h1>
+    {% endif %}
+{% endblock %}

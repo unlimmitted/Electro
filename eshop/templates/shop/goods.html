@@ -1,0 +1,19 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block content %}
+<form action="{% url 'goods' %}">
+    <input name="search">
+    <button type="submit">Найти</button>
+</form>
+
+{% for product in goods %}
+<form method="post">
+    {% csrf_token %}
+    {{product.title}}
+    {{ product.description }}
+    {% if product.photo %}
+        <img src="{{ product.photo.url }}" alt="" width='200' height='200'>
+    {% endif %}
+</form>
+{% endfor %}
+{% endblock %}

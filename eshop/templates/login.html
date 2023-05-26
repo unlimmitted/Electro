@@ -1,0 +1,13 @@
+
+{% block content %}
+<title>{{ title }}</title>
+{% if request.user.is_authenticated %}
+    <h1>Вы уже вошли<h2>
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Войти</button>
+</form>
+{% endif %}
+{%  endblock %}
