@@ -1,8 +1,7 @@
 {% extends 'shop/base.html' %}
 
-{{ title }}
 {% block content %}
-    <!-- SECTION -->
+<!-- SECTION -->
 <div class="section">
     <!-- container -->
     <div class="container">
@@ -12,8 +11,7 @@
             <div id="store" class="col-md-9">
                 <!-- store products -->
                 <div class="row">
-                    {% if cat_goods %}
-                    {% for product in cat_goods %}
+                    {% for product in all_products %}
                     <div class="col-md-4 col-xs-6">
                         <div class="product">
                             <div class="product-img">
@@ -32,9 +30,6 @@
                         </div>
                     </div>
                     {% endfor %}
-                    {% else %}
-                       <h1>Товары не найдены</h1>
-                    {% endif %}
                 </div>
                 <!-- /store products -->
             </div>

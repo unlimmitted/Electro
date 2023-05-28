@@ -1,10 +1,6 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 {% block content %}
-<form action="{% url 'goods' %}">
-    <input name="search">
-    <button type="submit">Найти</button>
-</form>
 
 {% for product in goods %}
 <form method="post">

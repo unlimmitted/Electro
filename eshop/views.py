@@ -18,17 +18,21 @@ def home(request):
     return render(request, 'shop/base.html', context={'title': title, 'category_list': category, 'products': products})
 
 
-def goods(request):
-    title = 'Bads - анти товары'
+def store(request):
     search_request = request.GET.get('search', '')
 
     if search_request:
-        form = ProductList.objects.filter(
+        all_products = ProductList.objects.filter(
             Q(title__icontains=search_request) | Q(description__icontains=search_request))
     else:
-        form = ProductList.objects.all()
+        all_products = ProductList.objects.all
 
-    return render(request, 'shop/goods.html', context={'goods': form, 'title': title})
+    return render(request, 'shop/store.html', context={'all_products': all_products})
+
+
+def product_page(request, slug):
+    product = ProductList.objects.filter(slug=slug)
+    return render(request, 'shop/product.html', context={'product': product})
 
 
 def category(request, pk):
@@ -46,10 +50,6 @@ def category(request, pk):
 
 
 def cart(request):
-    pass
-
-
-def product(request):
     pass
 
 

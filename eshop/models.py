@@ -22,7 +22,8 @@ class ProductList(models.Model):
         max_length=255, verbose_name="Название товара", null=True)
     price = models.CharField(
         max_length=255, verbose_name="Цена", null=True)
-    description = models.TextField(verbose_name="Описание", null=True)
+    description = models.TextField(verbose_name="Краткое описание", null=True)
+    full_description = models.TextField(verbose_name="Подробное описание", null=True)
     slug = AutoSlugField(populate_from='title')
     photo = models.ImageField(
         upload_to="images/%Y/%m/%d", verbose_name="Фото")
