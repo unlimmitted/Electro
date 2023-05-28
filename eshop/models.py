@@ -39,3 +39,11 @@ class ProductList(models.Model):
         verbose_name = 'Товары'
         verbose_name_plural = 'Товары'
         ordering = ('-id',)
+
+class UserCartList(models.Model):
+    username = models.CharField(max_length=35, verbose_name='Пользователь')
+    product = models.CharField(max_length=255, verbose_name='Товар в коризну')
+    quantity = models.IntegerField(verbose_name='Количество', blank=True, null=True)
+
+    def __str__(self):
+        return self.username

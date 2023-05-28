@@ -13,9 +13,10 @@ from django.db.models import Q
 
 def home(request):
     title = 'Electro'
+    quantity_form = AddToCart(request.POST)
     category = Category.objects.all()
     products = ProductList.objects.all()
-    return render(request, 'shop/base.html', context={'title': title, 'category_list': category, 'products': products})
+    return render(request, 'shop/base.html', context={'title': title, 'category_list': category, 'products': products, 'quantity_form': quantity_form})
 
 
 def store(request):
@@ -49,8 +50,38 @@ def category(request, pk):
     return render(request, 'shop/category.html', context={'title': title, 'cat_goods': cat_goods, 'pk': pk})
 
 
-def cart(request):
-    pass
+def cart(request, username):
+    products = []
+    names = UserCartList.objects.all()
+
+    for n in names:
+        if n.username == username:
+            products.append(ProductList.objects.filter(slug=n.product))
+    return render(request, 'shop/cart.html', context={'data': products, 'title': 'Корзина - Nimble'})
+
+
+def delete_cart_item(request, slug):
+    del_item = UserCartList.objects.filter(product=slug)
+    del_item.delete()
+
+    return redirect('user_cart', request.user.username)
+
+
+def add_to_cart(request, slug):
+    form = AddToCart(request.POST)
+
+    if form.is_valid():
+        cart_data = form.save(commit=False)
+        cart_data.username = request.user.username
+        cart_data.product = slug
+        cart_data.save()
+    # return redirect('user_cart', request.user.username)
+    return redirect('home')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('home')
 
 
 class LoginUser(DataMixin, LoginView):

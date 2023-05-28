@@ -1,26 +1,31 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from eshop.models import *
 
 class RegisterUserForm(UserCreationForm):
-    first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={
-        'class': 'input-field', 'placeholder': 'Имя'}))
-    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={
-        'class': 'input-field', 'placeholder': 'Фамилия'}))
     username = forms.EmailField(label='Почта', widget=forms.EmailInput(attrs={
-        'class': 'input-field', 'placeholder': 'Email'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={
-        'class': 'input-field', 'placeholder': 'Пароль'}))
-    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={
-        'class': 'input-field', 'placeholder': 'Подтверждение пароля'}))
+        'class': 'input100', 'placeholder': 'Username'}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={
+        'class': 'input100', 'placeholder': 'Password'}))
+    password2 = forms.CharField(label='Please confirm the entered password', widget=forms.PasswordInput(attrs={
+        'class': 'input100', 'placeholder': 'Please confirm the entered password'}))
 
     class Meta:
         model = User
-        fields = {'first_name', 'last_name', 'username', 'password1', 'password2'}
+        fields = {'username', 'password1', 'password2'}
 
 
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Email', widget=forms.TextInput(attrs={
-        'class': 'input-field', 'placeholder': 'Email'}))
+        'class': 'input100', 'placeholder': 'Username'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={
-        'class': 'input-field', 'placeholder': 'Пароль'}))
+        'class': 'input100', 'placeholder': 'Password'}))
+    
+
+class AddToCart(forms.ModelForm):
+    quantity = forms.IntegerField(label='Количество', widget=forms.TextInput(attrs={'value': '1', 'type': 'hidden'}))
+
+    class Meta:
+        model = UserCartList
+        fields = ['quantity']

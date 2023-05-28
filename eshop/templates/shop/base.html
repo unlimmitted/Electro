@@ -61,22 +61,22 @@
                                 {% if request.user.is_authenticated %}
 								<div>
 									<a>
-										
-										<span>Login user: {{request.user.username}}</span>
+										<span>Login user: <center><a href="{% url 'logout' %}" style="font-color: red;">{{request.user.username}}</a></center></span>
 									</a>
 								</div>
                                 <!-- Cart -->
 								<div class="dropdown">
-									<a href="#">
+									<a href="{% url 'user_cart' request.user.username %}">
+                                        
 										<i class="fa fa-shopping-cart"></i>
 										<span>Your Cart</span>
+
 									</a>
-									
 								</div>
 								<!-- /Cart -->
                                 {% else %}
                                 <div>
-									<a href="#">
+									<a href="login">
 										<i class="fa fa-heart-o"></i>
 										<span>Sign in</span>
 									</a>
@@ -102,6 +102,7 @@
 		<div class="container">
 			<div class="row">
                 {% for category in category_list %}
+                <a href="{% url "category" category.pk %}" class="cta-btn">
 				<div class="col-md-4 col-xs-6">
 					<div class="shop">
 						<div class="shop-img">
@@ -113,6 +114,7 @@
 						</div>
 					</div>
 				</div>
+                </a>
 				{% endfor %}
             </div>
         </div>
@@ -151,9 +153,13 @@
 											<h3 class="product-name"><a href="{% url 'product_page' product.slug %}">{{ product.title }}</a></h3>
 											<h4 class="product-price">{{ product.price }}</h4>
 										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-										</div>
+                                        <form method="post" action="{% url 'add_to_cart' product.slug %}">
+                                        {% csrf_token %}
+										    <div class="add-to-cart">
+                                                {{ quantity_form.quantity }}
+										    	<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										    </div>
+                                        </form>
 									</div>
 									{% endfor %}
 								</div>
@@ -204,7 +210,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <span class="copyright">
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Дипломная работа
                     </span>
                 </div>
             </div>
