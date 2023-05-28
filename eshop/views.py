@@ -38,6 +38,7 @@ def product_page(request, slug):
 
 def category(request, pk):
     title = 'Bads'
+    quantity_form = AddToCart(request.POST)
     search_request = request.GET.get('search', '')
     selected_category = ProductList.objects.filter(category_id=pk)
 
@@ -47,7 +48,7 @@ def category(request, pk):
     else:
         cat_goods = selected_category
 
-    return render(request, 'shop/category.html', context={'title': title, 'cat_goods': cat_goods, 'pk': pk})
+    return render(request, 'shop/category.html', context={'title': title, 'cat_goods': cat_goods, 'pk': pk, 'quantity_form': quantity_form})
 
 
 def cart(request, username):
