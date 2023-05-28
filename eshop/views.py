@@ -13,8 +13,9 @@ from django.db.models import Q
 
 def home(request):
     title = 'Electro'
-    form = Category.objects.all()
-    return render(request, 'shop/base.html', context={'title': title, 'category_list': form})
+    category = Category.objects.all()
+    products = ProductList.objects.all()
+    return render(request, 'shop/base.html', context={'title': title, 'category_list': category, 'products': products})
 
 
 def goods(request):

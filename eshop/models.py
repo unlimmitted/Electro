@@ -7,6 +7,8 @@ from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
+    photo = models.ImageField(
+        upload_to="images/shop_icons", verbose_name="Фото")
 
     def __str__(self):
         return self.name
