@@ -40,7 +40,8 @@ Ubuntu: [Тык](https://www.digitalocean.com/community/tutorials/how-to-install
 Windows: [Тык](https://www.postgresql.org/download/windows/)
 
 ## Запуск проекта
-Run in project directory:
+*все команды выполнять находясь в корне проекта(там где лежит файл manage.py)*
+
 ```cpp
 pip install -r requirements.txt
 ``` 
