@@ -1,17 +1,6 @@
 # Electro online store
+## Предварительная настройкая Django
 
-## Установка базы данных PostgreSQL
-Вот прекрасный гайд
-
-Ubuntu: [Тык](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04)
-
-Windows: [Тык](https://www.postgresql.org/download/windows/)
-
-## Запуск проекта
-Run in project directory:
-```cpp
-pip install -r requirements.txt
-``` 
 В "settings.py" Django нужно указать необходимые настройки
 
 ### Настройки хранения статических файлов
@@ -43,6 +32,19 @@ DATABASES = {
     }
 }
 ```
+## Установка базы данных PostgreSQL
+Вот прекрасный гайд
+
+Ubuntu: [Тык](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04)
+
+Windows: [Тык](https://www.postgresql.org/download/windows/)
+
+## Запуск проекта
+Run in project directory:
+```cpp
+pip install -r requirements.txt
+``` 
+
 Миграция стандартных и пользовательских моделей Django
 ```cpp
 python manage.py makemigrations 
