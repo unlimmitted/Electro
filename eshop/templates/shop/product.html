@@ -36,10 +36,11 @@
                         <span class="product-available">In Stock</span>
                     </div>
                     <p>{{ item.description }}</p>
+                    <form action="{% url 'checkout' item.slug %}">
                     <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        <button class="add-to-cart-btn"><i class="bi bi-bag-fill"></i>Buy</button>
                     </div>
-
+                    </form>
                 </div>
             </div>
             <!-- /Product details -->

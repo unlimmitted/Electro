@@ -20,15 +20,16 @@ def home(request):
 
 
 def store(request):
+    quantity_form = AddToCart(request.POST)
     search_request = request.GET.get('search', '')
 
     if search_request:
         all_products = ProductList.objects.filter(
-            Q(title__icontains=search_request) | Q(description__icontains=search_request))
+            Q(title__icontains=search_request) | Q(description__icontains=search_request) | Q(full_description__icontains=search_request))
     else:
         all_products = ProductList.objects.all
 
-    return render(request, 'shop/store.html', context={'all_products': all_products})
+    return render(request, 'shop/store.html', context={'all_products': all_products, 'quantity_form': quantity_form})
 
 
 def product_page(request, slug):
@@ -78,6 +79,11 @@ def add_to_cart(request, slug):
         cart_data.save()
     # return redirect('user_cart', request.user.username)
     return redirect('home')
+
+
+def checkout(request, slug):
+    from_db = ProductList.objects.filter(slug=slug)
+    return render(request, 'shop/checkout.html', context={'prod_info': from_db})
 
 
 def logout_user(request):

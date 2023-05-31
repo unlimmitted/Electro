@@ -26,13 +26,15 @@
                                 <h3 class="product-name"><a href="{% url 'product_page' product.slug %}">{{ product.title }}</a></h3>
                                 <h4 class="product-price">{{ product.price }}</h4>
                             </div>
+                            {% if request.user.is_authenticated %}
                             <form method="post" action="{% url 'add_to_cart' product.slug %}">
                                 {% csrf_token %}
-                                    <div class="add-to-cart">
-                                        {{ quantity_form.quantity }}
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
+                                <div class="add-to-cart">
+                                    {{ quantity_form.quantity }}
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                </div>
                             </form>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}
