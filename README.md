@@ -45,7 +45,7 @@ Run in project directory:
 pip install -r requirements.txt
 ``` 
 
-Миграция стандартных и пользовательских моделей Django
+Миграция стандартных и пользовательских моделей Django (Автоматическое создание таблиц в базе данных)
 ```cpp
 python manage.py makemigrations 
 ```
