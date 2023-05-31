@@ -64,7 +64,7 @@ python manage.py runserver 0.0.0.0:8000
 ```cpp
 python manage.py runserver
 ```
-Остановка: 
+Остановка web сервера в терминале: 
 ```cpp
 Ctrl + C
 ```
