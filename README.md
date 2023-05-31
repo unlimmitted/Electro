@@ -12,7 +12,16 @@ Run in project directory:
 ```cpp
 pip install -r requirements.txt
 ``` 
-В "settings.py" Django нужно указать данные для подключения к БД PostgreSQL
+В "settings.py" Django нужно указать необходимые настройки
+
+### Настройки хранения статических файлов
+```cpp
+STATIC_URL = 'место хранения статических файлов (стандартно: static/)'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'название_папки_загружаемых_фото')
+MEDIA_URL = '/название_папки_загружаемых_фото/'
+```
+### База данных
+Настройки для подключения к БД PostgreSQL:
 ```cpp
 DATABASES = {
     'default': {
