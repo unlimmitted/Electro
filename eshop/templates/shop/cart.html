@@ -12,6 +12,7 @@
                 <h1> Cart </h1>
                 <!-- store products -->
                 <div class="row">
+                    {% if data %}
                     {% for product in data %}
                     {% for item in product %}
                     <div class="col-md-4 col-xs-6">
@@ -29,11 +30,6 @@
                             <form action="{% url 'checkout' item.slug %}">
                                 <div class="add-to-cart">
                                     <button class="add-to-cart-btn" type="submit"><i class="bi bi-bag-fill"></i>Buy</button>
-                                    {% comment %} <form action="{% url 'delete_cart_item' item.slug %}">
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn" type="submit"><i class="bi bi-bag-fill"></i>del</button>
-                                        </div>
-                                    </form> {% endcomment %}
                                     <a href="{% url 'delete_cart_item' item.slug %}"><i class="bi bi-x-circle"></i></a>
                                 </div>
                             </form>
@@ -41,6 +37,13 @@
                     </div>
                     {% endfor %}
                     {% endfor %}
+                    {% else %}
+                    <div style="padding-bottom: 45%;">
+                        <center>
+                        <h1>Товары не найдены</h1>
+                        </center>
+                    </div>
+                    {% endif %}
                 </div>
                 <!-- /store products -->
             </div>

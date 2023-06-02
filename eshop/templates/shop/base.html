@@ -46,8 +46,11 @@
 						<div class="col-md-6">
 							<div class="header-search">
                                 <form action="{% url 'all_product' %}">
-                                    <select class="input-select">
-										<option value="0">All Categories</option>
+                                    <select class="input-select" name="category_search">
+										<option value="0" name="category_search">All Categories</option>
+										{% for category in category_list %}
+										<option value="{{ category.pk }}" name="category_search">{{ category }}</option>
+										{% endfor %}
 									</select>
                                     <input class="input" placeholder="Search here" name="search">
 									<button class="search-btn">Search</button>
@@ -217,8 +220,12 @@
 					<div class="footer">
 						<h3 class="footer-title">Service</h3>
 						<ul class="footer-links">
+						{% if request.user.is_authenticated %}
 							<li><a href="{% url 'user_cart' user.username %}">View Cart</a></li>
 							<li><a href="#">Help</a></li>
+						{% else %}
+						<li><a href="#">Help</a></li>
+						{% endif %}
 						</ul>
 					</div>
 				</div>

@@ -21,24 +21,40 @@ def home(request):
 
 def store(request):
     quantity_form = AddToCart(request.POST)
+    category = Category.objects.all()
+    category_search = request.GET.get('category_search', '')
     search_request = request.GET.get('search', '')
 
-    if search_request:
-        all_products = ProductList.objects.filter(
-            Q(title__icontains=search_request) | Q(description__icontains=search_request) | Q(full_description__icontains=search_request))
+    if category_search:
+        category_search = int(category_search)
     else:
-        all_products = ProductList.objects.all
+        category_search = 0
+    
+    if search_request:
+        if category_search == 0:
+            goods = ProductList.objects.filter(Q(title__icontains=search_request) | Q(
+        description__icontains=search_request) | Q(full_description__icontains=search_request))
+        elif category_search != 0:
+            search_category = ProductList.objects.filter(category=category_search)
+            goods = search_category.filter(Q(title__icontains=search_request) | Q(
+        description__icontains=search_request) | Q(full_description__icontains=search_request))
+        else:
+            goods = ProductList.objects.all
+    else:
+        goods = ProductList.objects.all
 
-    return render(request, 'shop/store.html', context={'all_products': all_products, 'quantity_form': quantity_form})
+    return render(request, 'shop/store.html', context={'all_products': goods, 'category_list': category, 'quantity_form': quantity_form})
 
 
 def product_page(request, slug):
     product = ProductList.objects.filter(slug=slug)
-    return render(request, 'shop/product.html', context={'product': product})
+    category = Category.objects.all()
+    return render(request, 'shop/product.html', context={'category_list': category, 'product': product})
 
 
 def category(request, pk):
     title = 'Bads'
+    category = Category.objects.all()
     quantity_form = AddToCart(request.POST)
     search_request = request.GET.get('search', '')
     selected_category = ProductList.objects.filter(category_id=pk)
@@ -49,17 +65,20 @@ def category(request, pk):
     else:
         cat_goods = selected_category
 
-    return render(request, 'shop/category.html', context={'title': title, 'cat_goods': cat_goods, 'pk': pk, 'quantity_form': quantity_form})
+    return render(request, 'shop/category.html', context={'title': title, 'category_list': category, 'cat_goods': cat_goods, 'pk': pk, 'quantity_form': quantity_form})
 
 
 def cart(request, username):
     products = []
     names = UserCartList.objects.all()
+    category = Category.objects.all()
 
-    for n in names:
-        if n.username == username:
-            products.append(ProductList.objects.filter(slug=n.product))
-    return render(request, 'shop/cart.html', context={'data': products, 'title': 'Корзина - Nimble'})
+    if request.user.username == username:
+        for n in names:
+            if n.username == username:
+                products.append(ProductList.objects.filter(slug=n.product))
+    
+    return render(request, 'shop/cart.html', context={'data': products, 'category_list': category, 'title': 'Корзина - Nimble'})
 
 
 def delete_cart_item(request, slug):
@@ -77,7 +96,7 @@ def add_to_cart(request, slug):
         cart_data.username = request.user.username
         cart_data.product = slug
         cart_data.save()
-    # return redirect('user_cart', request.user.username)
+
     return redirect('home')
 
 
