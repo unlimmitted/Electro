@@ -5,11 +5,11 @@ from eshop.models import *
 
 class RegisterUserForm(UserCreationForm):
     username = forms.EmailField(label='Почта', widget=forms.EmailInput(attrs={
-        'class': 'input100', 'placeholder': 'Username'}))
+        'class': 'input100', 'placeholder': 'Логин'}))
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={
-        'class': 'input100', 'placeholder': 'Password'}))
+        'class': 'input100', 'placeholder': 'Пароль'}))
     password2 = forms.CharField(label='Please confirm the entered password', widget=forms.PasswordInput(attrs={
-        'class': 'input100', 'placeholder': 'Please confirm the entered password'}))
+        'class': 'input100', 'placeholder': 'Пожалуйста подтвердите пароль'}))
 
     class Meta:
         model = User
@@ -17,10 +17,10 @@ class RegisterUserForm(UserCreationForm):
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Email', widget=forms.TextInput(attrs={
-        'class': 'input100', 'placeholder': 'Username'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={
+        'class': 'input100', 'placeholder': 'Логин'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={
-        'class': 'input100', 'placeholder': 'Password'}))
+        'class': 'input100', 'placeholder': 'Пароль'}))
     
 
 class AddToCart(forms.ModelForm):

@@ -33,19 +33,19 @@
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" style="color: red;">
                     {% csrf_token %}
 					<span class="login100-form-title">
-						SIGN UP
+						РЕГИСТРАЦИЯ
 					</span>
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Пожалуйста введите логин">
 						{{ form.username }}
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Please enter password" style="margin-bottom: 15px;">
+					<div class="wrap-input100 validate-input" data-validate = "Пожалуйста введите пароль" style="margin-bottom: 15px;">
 						{{ form.password1 }}
 						<span class="focus-input100"></span>
 					</div>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Please confirm the entered password" style="margin-bottom: 15px;">
+                    <div class="wrap-input100 validate-input" data-validate = "Пожалуйста подтвердите введенный пароль" style="margin-bottom: 15px;">
 						{{ form.password2 }}
 						<span class="focus-input100"></span>
 					</div>
@@ -54,17 +54,17 @@
 
 					<div class="container-login100-form-btn" style="color: red;">
 						<button class="login100-form-btn">
-							Sign up
+							Регистрация
 						</button>
 					</div>
 
 					<div class="flex-col-c p-t-170 p-b-40">
 						<span class="txt1 p-b-9">
-							Already have an account?
+							Уже есть аккаунт?
 						</span>
 
 						<a href="{% url 'login' %}" class="txt3" style="color: black;">
-							Sign in
+							Войти
 						</a>
 					</div>
 				</form>
