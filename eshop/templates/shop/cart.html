@@ -9,7 +9,7 @@
         <div class="row">
             <!-- STORE -->
             <div id="store" class="col-md-9">
-                <h1> Cart </h1>
+                <h1> Корзина </h1>
                 <!-- store products -->
                 <div class="row">
                     {% if data %}
@@ -20,7 +20,7 @@
                             <div class="product-img">
                                 <img src="{{ item.photo.url }}" alt="" width='263' height='263'>
                                 <div class="product-label">
-                                    <span class="new">NEW</span>
+                                    <span class="new">НОВОЕ</span>
                                 </div>
                             </div>
                             <div class="product-body">
@@ -29,7 +29,7 @@
                             </div>
                             <form action="{% url 'checkout' item.slug %}">
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn" type="submit"><i class="bi bi-bag-fill"></i>Buy</button>
+                                    <button class="add-to-cart-btn" type="submit"><i class="bi bi-bag-fill"></i>Купить</button>
                                     <a href="{% url 'delete_cart_item' item.slug %}"><i class="bi bi-x-circle"></i></a>
                                 </div>
                             </form>

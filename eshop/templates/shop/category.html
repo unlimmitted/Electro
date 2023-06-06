@@ -19,7 +19,7 @@
                             <div class="product-img">
                                 <img src="{{ product.photo.url }}" alt="" width='263' height='263'>
                                 <div class="product-label">
-                                    <span class="new">NEW</span>
+                                    <span class="new">НОВОЕ</span>
                                 </div>
                             </div>
                             <div class="product-body">
@@ -31,7 +31,7 @@
                                 {% csrf_token %}
                                 <div class="add-to-cart">
                                     {{ quantity_form.quantity }}
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Добавить в корзину</button>
                                 </div>
                             </form>
                             {% endif %}

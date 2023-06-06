@@ -47,13 +47,13 @@
 							<div class="header-search">
                                 <form action="{% url 'all_product' %}">
                                     <select class="input-select" name="category_search">
-										<option value="0" name="category_search">All Categories</option>
+										<option value="0" name="category_search">Все категории</option>
 										{% for category in category_list %}
 										<option value="{{ category.pk }}" name="category_search">{{ category }}</option>
 										{% endfor %}
 									</select>
-                                    <input class="input" placeholder="Search here" name="search">
-									<button class="search-btn">Search</button>
+                                    <input class="input" placeholder="Искать" name="search">
+									<button class="search-btn">Поиск</button>
                                 </form>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
                                 {% if request.user.is_authenticated %}
 								<div>
 									<a>
-										<span>Login user: <center><a href="{% url 'logout' %}" style="font-color: red;">{{request.user.username}}</a></center></span>
+										<span>Пользователь: <center><a href="{% url 'logout' %}" style="font-color: red;">{{request.user.username}}</a></center></span>
 									</a>
 								</div>
                                 <!-- Cart -->
@@ -73,7 +73,7 @@
 									<a href="{% url 'user_cart' request.user.username %}">
                                         
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
+										<span>Коризна</span>
 
 									</a>
 								</div>
@@ -82,7 +82,7 @@
                                 <div>
 									<a href="{% url 'login' %}">
 										<i class="bi bi-box-arrow-in-left"></i>
-										<span>Sign in</span>
+										<span>Войти</span>
 									</a>
 								</div>
                                 {% endif %}
@@ -113,8 +113,8 @@
 							<img src="{{ category.photo.url }}" alt="">
 						</div>
 						<div class="shop-body">
-							<h3>{{ category }}<br>Collection</h3>
-							<a href="{% url "category" category.pk %}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+							<h3>{{ category }}</h3>
+							<a href="{% url "category" category.pk %}" class="cta-btn">Смотреть <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -132,7 +132,7 @@
 				<!-- section title -->
 				<div class="col-md-12">
 					<div class="section-title">
-						<h3 class="title"><a href="{% url 'all_product' %}">Products</a></h3>
+						<h3 class="title"><a href="{% url 'all_product' %}">Товары:</a></h3>
 						<div class="section-nav">
 						</div>
 					</div>
@@ -150,7 +150,7 @@
 										<div class="product-img">
 											<img src="{{ product.photo.url }}" alt="" width='263' height='263'>
 											<div class="product-label">
-												<span class="new">NEW</span>
+												<span class="new">НОВОЕ</span>
 											</div>
 										</div>
 										<div class="product-body">
@@ -162,7 +162,7 @@
                                         {% csrf_token %}
 										    <div class="add-to-cart">
                                                 {{ quantity_form.quantity }}
-										    	<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										    	<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Добавить в корзину</button>
 										    </div>
                                         </form>
 										{% endif %}
@@ -193,8 +193,8 @@
 			<div class="row">
 				<div class="col-md-3 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-title">About Us</h3>
-						<p>We are an online hardware store for ordinary users and organizations</p>
+						<h3 class="footer-title">О нас</h3>
+						<p>Дипломная работа</p>
 						<ul class="footer-links">
 							<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
 							<li><a href="#"><i class="fa fa-phone"></i>+777-77-77-77</a></li>
@@ -205,7 +205,7 @@
 				{% if category_list %}
 				<div class="col-md-3 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-title">Categories</h3>
+						<h3 class="footer-title">Категории</h3>
 						<ul class="footer-links">
 							{% for category in category_list %}
 							{% if category.pk <= 4 %}
@@ -218,13 +218,13 @@
 				{% endif %}
 				<div class="col-md-3 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-title">Service</h3>
+						<h3 class="footer-title">Сервисы</h3>
 						<ul class="footer-links">
 						{% if request.user.is_authenticated %}
-							<li><a href="{% url 'user_cart' user.username %}">View Cart</a></li>
-							<li><a href="#">Help</a></li>
+							<li><a href="{% url 'user_cart' user.username %}">Показать корзину</a></li>
+							<li><a href="#">Помощь</a></li>
 						{% else %}
-						<li><a href="#">Help</a></li>
+						<li><a href="#">Помощь</a></li>
 						{% endif %}
 						</ul>
 					</div>

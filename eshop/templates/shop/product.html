@@ -33,12 +33,12 @@
                     <h2 class="product-name">{{ item.title }}</h2>
                     <div>
                         <h3 class="product-price">{{ item.price }}</h3>
-                        <span class="product-available">In Stock</span>
+                        <span class="product-available">В наличии</span>
                     </div>
                     <p>{{ item.description }}</p>
                     <form action="{% url 'checkout' item.slug %}">
                     <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="bi bi-bag-fill"></i>Buy</button>
+                        <button class="add-to-cart-btn"><i class="bi bi-bag-fill"></i>Купить</button>
                     </div>
                     </form>
                 </div>
@@ -50,7 +50,7 @@
                 <div id="product-tab">
                     <!-- product tab nav -->
                     <ul class="tab-nav">
-                        <li class="active"><a>Description</a></li>
+                        <li class="active"><a>Описание</a></li>
                     </ul>
                     <!-- /product tab nav -->
 
